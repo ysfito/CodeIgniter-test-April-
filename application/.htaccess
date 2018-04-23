@@ -1,0 +1,21 @@
+< IfModule mod_rewrite.c>
+  RewriteEngine On
+  # ! IMPORTANT! Réglez votre RewriteBase ici et ne pas oublier trailing et leader
+  #   barres obliques
+  # Si votre page réside à
+  #   http://www.example.com/mypage/test1
+  # alors utilisez
+  # RewriteBase / mypage / test1 /
+  RewriteBase /CodeIgniter-3.1.8/
+  RewriteCond  % {REQUEST_FILENAME}  ! -f
+  RewriteCond  % {REQUEST_FILENAME}  ! -d
+  RewriteRule  ^ (. *) $  Index.php? / $ 1  [L]
+</ IfModule >
+
+< IfModule ! Mod_rewrite.c >
+  # Si mod_rewrite n'est pas installé, tous les 404
+  # peut être envoyé à index.php, et tout fonctionne normalement.
+  # Soumis par: ElliotHaughin
+
+  ErrorDocument 404 /index.php
+</ IfModule >
